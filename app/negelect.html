@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>左边固定，右边自适应</title>
+<style type="text/css">
+body{margin:0;padding:0}
+.wrap{ width:100%; float:left;}
+.content{ height:300px;margin-left:200px;}
+.right{ width:200px; height:300px; background:red; float:left; margin-left:-100%;}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+	<div id="map" class="content" >content</div>
+</div>
+<div class="right">aside</div>
+<button id='close'>close</button>
+<button id='open'>open</button>
+</body>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=Mola7LNV1N5eaYxkWG4lfvQe"></script>
+<script src="src/jquery.js"></script>
+<script type="text/javascript">
+	var map = new BMap.Map('map');
+    var poi = new BMap.Point(116.307852,40.057031);
+    map.centerAndZoom(poi, 16);
+    var mapType=new BMap.MapTypeControl({anchor: BMAP_ANCHOR_TOP_RIGHT,offset: new BMap.Size(8, 52),mapTypes:[BMAP_NORMAL_MAP,BMAP_SATELLITE_MAP]});
+          map.addControl(mapType);//添加地图类型控件
+$("#close").on('click',function(){
+	$('.right').css({display:'none'});
+	$('.content').css({'margin-left':'0px'});
+});
+$("#open").on('click',function(){
+	$('.right').css({display:'block'});
+	$('.content').css({'margin-left':'200px'});
+});
+</script>
+</html>
